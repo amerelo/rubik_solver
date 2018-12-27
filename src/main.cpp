@@ -12,181 +12,185 @@ keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
 
     Core *core = reinterpret_cast<Core *>(glfwGetWindowUserPointer(window));
 
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    if (glfwGetTime() > 21.0)
     {
-        glfwSetWindowShouldClose(window, GL_TRUE);
-    }
-    if (key == GLFW_KEY_L && action == GLFW_PRESS)
-    {
-        core->light_pos = core->camera.pos;
-    }
-    if (key == GLFW_KEY_KP_ADD && action == GLFW_PRESS)
-    {
+
+        if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        {
+            glfwSetWindowShouldClose(window, GL_TRUE);
+        }
+        if (key == GLFW_KEY_L && action == GLFW_PRESS)
+        {
+            core->light_pos = core->camera.pos;
+        }
+        if (key == GLFW_KEY_KP_ADD && action == GLFW_PRESS)
+        {
 //        core->tweakcore += 0.05f;
-    }
-    if (key == GLFW_KEY_KP_SUBTRACT && action == GLFW_PRESS)
-    {
+        }
+        if (key == GLFW_KEY_KP_SUBTRACT && action == GLFW_PRESS)
+        {
 //        core->tweakcore -= 0.05f;
-    }
-    if (key == GLFW_KEY_R && action == GLFW_PRESS)
-    {
-        core->addRandomMoves(3);
-    }
-    if (key == GLFW_KEY_M && action == GLFW_RELEASE)
-    {
-        core->camera.switchMode();
-    }
+        }
+        if (key == GLFW_KEY_R && action == GLFW_PRESS)
+        {
+            core->addRandomMoves(3);
+        }
+        if (key == GLFW_KEY_M && action == GLFW_RELEASE)
+        {
+            core->camera.switchMode();
+        }
 //    if (key == GLFW_KEY_O && action == GLFW_RELEASE)
 //    {
 //        core->resolver.switchAlgo();
 //    }
-    if (key == GLFW_KEY_P && action == GLFW_RELEASE)
-    {
-        core->resolver.prettyRubikCubePrint(core->resolver.current_state);
-    }
-    if (key == GLFW_KEY_X && action == GLFW_RELEASE)
-    {
-        core->render_axes_on = !core->render_axes_on;
-    }
-    if (key == GLFW_KEY_ENTER && action == GLFW_RELEASE)
-    {
-        core->anim_queue_is_running = !core->anim_queue_is_running;
-    }
-    if (key == GLFW_KEY_SPACE && action == GLFW_RELEASE)
-    {
-        core->resolveRubik();
-    }
-    if (!core->anim_queue_is_running && core->anim_queue.size() == 0)
-    {
-        if (key == GLFW_KEY_1 && action == GLFW_RELEASE)
-            core->createPlayList(core->raw_play_list_sequence[0]);
-        if (key == GLFW_KEY_2 && action == GLFW_RELEASE)
-            core->createPlayList(core->raw_play_list_sequence[1]);
-        if (key == GLFW_KEY_3 && action == GLFW_RELEASE)
-            core->createPlayList(core->raw_play_list_sequence[2]);
-        if (key == GLFW_KEY_4 && action == GLFW_RELEASE)
-            core->createPlayList(core->raw_play_list_sequence[3]);
-        if (key == GLFW_KEY_5 && action == GLFW_RELEASE)
-            core->createPlayList(core->raw_play_list_sequence[4]);
-        if (key == GLFW_KEY_6 && action == GLFW_RELEASE)
-            core->createPlayList(core->raw_play_list_sequence[5]);
-        if (key == GLFW_KEY_7 && action == GLFW_RELEASE)
-            core->createPlayList(core->raw_play_list_sequence[6]);
-        if (key == GLFW_KEY_8 && action == GLFW_RELEASE)
-            core->createPlayList(core->raw_play_list_sequence[7]);
-        if (key == GLFW_KEY_9 && action == GLFW_RELEASE)
-            core->createPlayList(core->raw_play_list_sequence[8]);
-        if (key == GLFW_KEY_0 && action == GLFW_RELEASE)
-            core->createPlayList(core->raw_play_list_sequence[9]);
-        if (key == GLFW_KEY_B && action == GLFW_RELEASE)
+        if (key == GLFW_KEY_P && action == GLFW_RELEASE)
         {
-            core->animation.changeRotationSpeed();
+            core->resolver.prettyRubikCubePrint(core->resolver.current_state);
         }
-    }
-    if (key == GLFW_KEY_KP_ENTER && action == GLFW_RELEASE)
-    {
-        core->animation.initRubikCube();
-        core->resolver.createResolvedState(core->resolver.current_state);
-    }
-    if (!core->animation.isAnyAnimationOn())
-    {
-        if (!glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) && !glfwGetKey(window, GLFW_KEY_LEFT_SHIFT))
+        if (key == GLFW_KEY_X && action == GLFW_RELEASE)
         {
-            if (key == GLFW_KEY_KP_4 && action == GLFW_PRESS)
+            core->render_axes_on = !core->render_axes_on;
+        }
+        if (key == GLFW_KEY_ENTER && action == GLFW_RELEASE)
+        {
+            core->anim_queue_is_running = !core->anim_queue_is_running;
+        }
+        if (key == GLFW_KEY_SPACE && action == GLFW_RELEASE)
+        {
+            core->resolveRubik();
+        }
+        if (!core->anim_queue_is_running && core->anim_queue.size() == 0)
+        {
+            if (key == GLFW_KEY_1 && action == GLFW_RELEASE)
+                core->createPlayList(core->raw_play_list_sequence[0]);
+            if (key == GLFW_KEY_2 && action == GLFW_RELEASE)
+                core->createPlayList(core->raw_play_list_sequence[1]);
+            if (key == GLFW_KEY_3 && action == GLFW_RELEASE)
+                core->createPlayList(core->raw_play_list_sequence[2]);
+            if (key == GLFW_KEY_4 && action == GLFW_RELEASE)
+                core->createPlayList(core->raw_play_list_sequence[3]);
+            if (key == GLFW_KEY_5 && action == GLFW_RELEASE)
+                core->createPlayList(core->raw_play_list_sequence[4]);
+            if (key == GLFW_KEY_6 && action == GLFW_RELEASE)
+                core->createPlayList(core->raw_play_list_sequence[5]);
+            if (key == GLFW_KEY_7 && action == GLFW_RELEASE)
+                core->createPlayList(core->raw_play_list_sequence[6]);
+            if (key == GLFW_KEY_8 && action == GLFW_RELEASE)
+                core->createPlayList(core->raw_play_list_sequence[7]);
+            if (key == GLFW_KEY_9 && action == GLFW_RELEASE)
+                core->createPlayList(core->raw_play_list_sequence[8]);
+            if (key == GLFW_KEY_0 && action == GLFW_RELEASE)
+                core->createPlayList(core->raw_play_list_sequence[9]);
+            if (key == GLFW_KEY_B && action == GLFW_RELEASE)
             {
-                core->animation.applyRubikCube_L();
-                core->resolver.apply_L(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_6 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_R();
-                core->resolver.apply_R(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_8 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_U();
-                core->resolver.apply_U(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_2 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_D();
-                core->resolver.apply_D(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_5 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_B();
-                core->resolver.apply_B(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_0 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_F();
-                core->resolver.apply_F(core->resolver.current_state, core->resolver.current_state);
+                core->animation.changeRotationSpeed();
             }
         }
-        if (!glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT))
+        if (key == GLFW_KEY_KP_ENTER && action == GLFW_RELEASE)
         {
-            if (key == GLFW_KEY_KP_4 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_L2();
-                core->resolver.apply_L2(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_6 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_R2();
-                core->resolver.apply_R2(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_8 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_U2();
-                core->resolver.apply_U2(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_2 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_D2();
-                core->resolver.apply_D2(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_5 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_B2();
-                core->resolver.apply_B2(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_0 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_F2();
-                core->resolver.apply_F2(core->resolver.current_state, core->resolver.current_state);
-            }
+            core->animation.initRubikCube();
+            core->resolver.createResolvedState(core->resolver.current_state);
         }
-        if (!glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) && glfwGetKey(window, GLFW_KEY_LEFT_CONTROL))
+        if (!core->animation.isAnyAnimationOn())
         {
-            if (key == GLFW_KEY_KP_4 && action == GLFW_PRESS)
+            if (!glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) && !glfwGetKey(window, GLFW_KEY_LEFT_SHIFT))
             {
-                core->animation.applyRubikCube_Lprime();
-                core->resolver.apply_Lprime(core->resolver.current_state, core->resolver.current_state);
+                if (key == GLFW_KEY_KP_4 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_L();
+                    core->resolver.apply_L(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_6 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_R();
+                    core->resolver.apply_R(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_8 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_U();
+                    core->resolver.apply_U(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_2 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_D();
+                    core->resolver.apply_D(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_5 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_B();
+                    core->resolver.apply_B(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_0 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_F();
+                    core->resolver.apply_F(core->resolver.current_state, core->resolver.current_state);
+                }
             }
-            if (key == GLFW_KEY_KP_6 && action == GLFW_PRESS)
+            if (!glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) && glfwGetKey(window, GLFW_KEY_LEFT_SHIFT))
             {
-                core->animation.applyRubikCube_Rprime();
-                core->resolver.apply_Rprime(core->resolver.current_state, core->resolver.current_state);
+                if (key == GLFW_KEY_KP_4 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_L2();
+                    core->resolver.apply_L2(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_6 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_R2();
+                    core->resolver.apply_R2(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_8 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_U2();
+                    core->resolver.apply_U2(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_2 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_D2();
+                    core->resolver.apply_D2(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_5 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_B2();
+                    core->resolver.apply_B2(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_0 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_F2();
+                    core->resolver.apply_F2(core->resolver.current_state, core->resolver.current_state);
+                }
             }
-            if (key == GLFW_KEY_KP_8 && action == GLFW_PRESS)
+            if (!glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) && glfwGetKey(window, GLFW_KEY_LEFT_CONTROL))
             {
-                core->animation.applyRubikCube_Uprime();
-                core->resolver.apply_Uprime(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_2 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_Dprime();
-                core->resolver.apply_Dprime(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_5 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_Bprime();
-                core->resolver.apply_Bprime(core->resolver.current_state, core->resolver.current_state);
-            }
-            if (key == GLFW_KEY_KP_0 && action == GLFW_PRESS)
-            {
-                core->animation.applyRubikCube_Fprime();
-                core->resolver.apply_Fprime(core->resolver.current_state, core->resolver.current_state);
+                if (key == GLFW_KEY_KP_4 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_Lprime();
+                    core->resolver.apply_Lprime(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_6 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_Rprime();
+                    core->resolver.apply_Rprime(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_8 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_Uprime();
+                    core->resolver.apply_Uprime(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_2 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_Dprime();
+                    core->resolver.apply_Dprime(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_5 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_Bprime();
+                    core->resolver.apply_Bprime(core->resolver.current_state, core->resolver.current_state);
+                }
+                if (key == GLFW_KEY_KP_0 && action == GLFW_PRESS)
+                {
+                    core->animation.applyRubikCube_Fprime();
+                    core->resolver.apply_Fprime(core->resolver.current_state, core->resolver.current_state);
+                }
             }
         }
     }
