@@ -648,7 +648,7 @@ void Core::resolveRubik()
         std::string str = resolver.solveState();
         createPlayList(str);
         // string_free(str);
-        std::cout << "Solution Found:" << std::endl;
+        // std::cout << "Solution Found:" << std::endl;
         std::cout << resolver.result << std::endl;
     }
     std::cout << "Playlist is not empty. Press [return] to launch it." << std::endl;

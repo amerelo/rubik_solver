@@ -36,7 +36,8 @@ pub fn star_thistletheaite(cube: Vec< String >) -> String
 
 	loop_phase(&mut current, &mut last, &mut list_moves);
 	// println!("END == current {:?}", current);
-
+    
+    println!("Solution Found in {} moves", list_moves.len());
 	list_moves.join(" ")
 }
 
