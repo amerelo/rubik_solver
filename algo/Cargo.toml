@@ -1,0 +1,19 @@
+[package]
+name = "algo"
+version = "0.1.0"
+authors = ["amerelo <amerelo@student.42.fr>"]
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+colored = "1.6"
+itertools = "0.7.8"
+
+serde = "1.0.80"
+bincode = "1.0.1"
+serde_derive = "1.0.80"
+
+rand = "0.6.1"
+fnv = "1.0.6"
+libc = "0.2"
