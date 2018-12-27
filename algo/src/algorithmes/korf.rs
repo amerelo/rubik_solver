@@ -20,7 +20,7 @@ pub fn print_time_elapsed(time: Instant)
 {
 	let elapsed = time.elapsed();
 	let sec = (elapsed.as_secs() as f64) + (elapsed.subsec_nanos() as f64 / 1000_000_000.0);
-	println!("Puzzle solved in {:.2} seconds, starting the graphic ui..", sec);
+	println!("Puzzle solved in {:.4} seconds", sec);
 }
 
 #[allow(dead_code)]

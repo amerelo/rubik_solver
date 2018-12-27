@@ -13,6 +13,7 @@ mod algorithmes;
 use cube::{cube_3::*, moves::*, print_3::{print_debug_cube}};
 use algorithmes::{ korf::*, thistlethwaite::*};
 use std::slice;
+use std::time::Instant;
 use libc::{c_char};
 use std::ffi::CString;
 
@@ -161,6 +162,8 @@ pub extern "C" fn string_free(s: *mut c_char) {
 #[no_mangle]
 pub extern "C" fn thistletheaite(ptr: *mut i32, size: usize) -> *mut c_char
 {
+	let now = Instant::now();
+
 	unsafe {
 		assert!(!ptr.is_null());
 		let cube: Vec<u8> = slice::from_raw_parts(ptr, size).to_vec().iter().map(|&i| i as u8 ).collect();
@@ -171,6 +174,8 @@ pub extern "C" fn thistletheaite(ptr: *mut i32, size: usize) -> *mut c_char
 			CString::new(result).unwrap()
 		};
 
+		print_time_elapsed(now);
 		return c_str_song.into_raw();
 	};
+
 }
